@@ -1,10 +1,10 @@
-<template id="template">
-  <div id="app">
+<template>
+  <div class="app">
     <div class="container">
-      <table id="table">
+      <table class="table">
         <thead>
-          <tr id="header">
-            <th>Turma|A|B|C</th>
+          <tr class = "headers">
+            <th>Turmas/A/B/C</th>
             <th>Nome</th>
             <th>Matemática</th>
             <th>Geografia</th>
@@ -12,14 +12,14 @@
             <th>Inglês</th>
             <th>História</th>
             <th>Ciências</th>
-            <th>Educação Física</th>
+            <th>Ed. Física</th>
             <th>Média Total</th>
-            <th>Aluno Aprovado ?</th>
-            <th>Excluir/Editar</th>
+            <th>Situação do Aluno</th>
+            <th>Excluir Editar</th>
           </tr>
         </thead>
         <tbody>
-        <tr id="myTr" v-for="aluno in alunos" :key="aluno.id">
+        <tr class="myTr" v-for="aluno in alunos" :key="aluno.id">
           <td :class="getTurmaClass(aluno.nomeTurma)" id="turmaName">{{ aluno.nomeTurma }}</td>
           <td>{{ aluno.nome }}</td>
           <td :class="getNotaClass(aluno.matematica)">{{ aluno.matematica }}</td>
@@ -38,8 +38,7 @@
       </table>
     </div>
     <div class="container">
-      <form id="myInput" @submit.prevent="salvarTurma">
- 
+      <form id="myInput" @submit.prevent="salvarTurma"> 
       <label>Turma</label>
       <input id="turmaI" type="text" placeholder="Turma" v-model="turma.nomeTurma"/>
       <label>Nome</label>
@@ -136,8 +135,8 @@ export default {
           this.resetarFormulario();
         })
         .catch(error => {
-          window.alert('Erro ao adicionar turma:', error.response);
-          window.alert('Dados do erro:', error.response.data);
+          console.log('Erro ao adicionar turma:', error.response);
+          console.log('Dados do erro:', error.response.data);
         });
     },
     editarTurmaA(aluno) {
@@ -236,18 +235,16 @@ export default {
 *{
   font-family: sans-serif;
 }
-#app {
-
-  background-color: rgb(255, 255, 255);
+.app {
+ background-color: #bedbe0;
 }
-#table {
- border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    min-width: 400px;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+.table {
+border-collapse: collapse;
+font-size: 0.9em;
+min-width: 400px;
+border-radius: 5px 5px 0 0;
+overflow: hidden;
+box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
 }
 #baixarCsv {
   background-color: rgb(26, 91, 4);
@@ -273,10 +270,12 @@ export default {
 #turmaI:hover {
   background-color: rgb(241, 241, 241);
 }
-
-
-#header{
-  background-color: rgb(227, 224, 225);
+.headers{
+  background-color: #000000;
+}
+.headers th{
+  padding: 12px 15px;
+  color: #ffffff;
 }
 .turma-a {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -323,7 +322,7 @@ th{
   background-color: #f6d4d6;
   color: #000000;
 }
-#myTr{
+.myTr{
   background-color: #ffffff;
   color: #020101;
   text-align: left;
